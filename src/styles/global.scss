@@ -1,0 +1,23 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+a{
+  text-decoration: none;
+}
+.app_wapper {
+  .el-menu-item{
+    text-align: left;
+  }
+  .el-menu-item [class^=el-icon-]{
+    font-size: 22px;
+  }
+  span{
+    font-size: 14px;
+  }
+  .nav-bar{
+    .is-active{
+      background: #000c17!important;
+    }
+  }
+}

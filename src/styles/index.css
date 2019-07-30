@@ -1,0 +1,10 @@
+/*登录页*/
+.form_wapper .el-form-item__label {
+  color: #fff;
+
+}
+/*自定义菜单宽度、背景色*/
+
+#app .app_wapper .sub_meuns_wapper .el-menu--collapse .el-menu{
+  height: 100vh!important;
+}
