@@ -5,8 +5,11 @@ import { permissionRouter, fixedRouter } from '@/router'
 import router from '@/router'
 import store from '@/store'
 var addRouFlag = false
-NProgress.configure({ showSpinner: false })// NProgress configuration
+NProgress.configure({ showSpinner: false })
 router.beforeEach((to, from, next) => {
+  if (to.path != '/') {
+    localStorage.setItem('currentPage', to.path)
+  }
   NProgress.start()
   let token = localStorage.getItem('X-Token')
     // 如果登录了
@@ -23,7 +26,7 @@ router.beforeEach((to, from, next) => {
         // 4.将生成好的路由addRoutes
         router.addRoutes(fixedRouter.concat(getRoutes))
         // 5.push之后，会重新进入到beforeEach的钩子里,直接进入第一个if判断
-        router.push({ path: '/home' }) // 白名单免登录
+        router.push({ path: localStorage.getItem('currentPage') ? localStorage.getItem('currentPage') : '/home' }) // 白名单免登录
       }
     })
   } else {

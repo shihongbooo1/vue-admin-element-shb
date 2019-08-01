@@ -1,6 +1,7 @@
 <template>
   <div>
-    详情页
+    列表页
+    <button @click="$router.push({path: '/audit/detail'})">详情页</button>
   </div>
 </template>
 

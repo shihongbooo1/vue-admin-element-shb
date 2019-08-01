@@ -1,7 +1,6 @@
 <template>
   <div>
-    列表页
-    <button @click="$router.push({path: '/list/detail'})">详情页</button>
+    系统设置
   </div>
 </template>
 

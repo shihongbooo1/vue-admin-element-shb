@@ -9,12 +9,12 @@
           <!-- 菜单组件 -->
           <div class="logo-box">
             <img src="../../assets/img/logo.jpg" alt="" v-show="!$store.getters.isCollapse">
-            <img src="../../assets/img/logo-min.jpg" style="width: 60%;" alt="" v-show="$store.getters.isCollapse">
+            <img src="../../assets/img/logo-min.jpg" style="width: 60%;" v-show="$store.getters.isCollapse" alt="" :style="!$store.getters.isCollapse ? '' : 'height:35px;'">
           </div>
           <div class="nav-bar">
             <router-link v-for="(item, index) in meuns" :key="index" :to="item.path">
               <el-menu-item v-if="item.path !== ''" @click="turnColor(item.path)" :index="item.path">
-                <i :class="item.meta.icon"></i>
+                <i :class=" 'iconfont' + ' ' + item.meta.icon"></i>
                 <span slot="title">{{item.meta.title ? item.meta.title : '' }}</span>
               </el-menu-item>
             </router-link>
@@ -26,7 +26,7 @@
           <i class="el-icon-user-solid" style="margin-right: 10px;font-size: 16px;"></i>
           <span>{{$store.getters.name}}</span>
           <el-button @click="outSystem" style="margin-left: 15px" size="mini" plain type="primary">退出</el-button>
-          <el-switch style="float: left;margin-top: 5px;" v-model="switchValue" active-color="#2d80fc" active-text="导航栏开/关" inactive-color="#a8a8a8"></el-switch>
+          <el-switch style="float: left;margin-top: 20px;" v-model="switchValue" active-color="#2d80fc" active-text="导航栏开/关" inactive-color="#a8a8a8"></el-switch>
           <!-- <el-breadcrumb class="breadcrumb-nav">
             <el-breadcrumb-item>
               <i style="margin-right: 5px;" :class="icon"></i>
@@ -71,9 +71,6 @@ export default {
       title: '首页', // 默认值首页
       icon: '', //图标
       tags: [], // 标签导航data
-      tagsArray: [ // 默认选中首个路由导航
-        
-      ],
       color: 'color:#2d80fc;',
       colorIndex: this.$route.path,
     }
@@ -85,25 +82,24 @@ export default {
     $route(val) {
       this.title = val.matched[0].meta.title
       this.icon = val.matched[0].meta.icon
-      if (sessionStorage.getItem('tagsData')) {
-        this.tags = JSON.parse(sessionStorage.getItem('tagsData'))
-      } else {
-        this.tagsArray.push({
-          name: this.title,
-          path: val.path
-        })
-        let hash = {};
-        this.tagsArray = this.tagsArray.reduce(function(item, next) {
-            hash[next.name] ? '' : hash[next.name] = true && item.push(next)
-            return item
-        }, [])
-        sessionStorage.setItem('tagsData', JSON.stringify(this.tagsArray))
-        this.tags = JSON.parse(sessionStorage.getItem('tagsData'))
-      }
+      this.tags.push({
+        name: this.title,
+        path: val.path
+      })
+      let hash = {};
+      this.tags = this.tags.reduce(function(item, next) {
+          hash[next.name] ? '' : hash[next.name] = true && item.push(next)
+          return item
+      }, [])
+      sessionStorage.setItem('tagsData', JSON.stringify(this.tags))
     }
   },
   methods: {
     outSystem() { //退出系统
+      this.$message({
+        message: '正在为您安全退出...',
+        type: 'warning'
+      })
       this.$store.dispatch('LoginOut')
     },
     turnColor(to) {
@@ -124,14 +120,14 @@ export default {
     if (sessionStorage.getItem('tagsData')) {
       this.tags = JSON.parse(sessionStorage.getItem('tagsData'))
     } else {
-      this.tagsArray.push({
-          name: this.$route.matched[0].meta.title,
-          path: this.$route.path
-        })
-      this.tags = this.tagsArray
+      this.tags.push({
+        name: this.$route.matched[0].meta.title,
+        path: this.$route.path
+      })
+      sessionStorage.setItem('tagsData', JSON.stringify(this.tags))
     }
     // console.log("菜单的展开跟路由有关系，查看elementui--el-menu  的default-active 属性")
-  }
+  },
 }
 
 </script>
@@ -173,6 +169,13 @@ export default {
 }
 .el-breadcrumb__item:last-child .el-breadcrumb__inner{
   font-weight: 600!important;
+}
+
+.nav-bar{
+  .iconfont{
+    margin-right: 10px;
+    font-size: 20px;
+  }
 }
 
 .tags-nav{

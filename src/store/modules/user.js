@@ -34,8 +34,10 @@ export default{
       return new Promise((resolve, reject) => {
         localStorage.removeItem('X-Token')
         sessionStorage.removeItem('tagsData')
+        localStorage.removeItem('currentPage')
         commit('SET_ROLES', '')
         commit('SET_NAME', '')
+        Message.close()
         window.location.href = window.location.origin + window.location.pathname
       })
     }

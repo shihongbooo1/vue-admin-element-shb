@@ -25,5 +25,13 @@ npm run test
 npm run lint
 ```
 
+## iconfont使用
+```
+这里使用的是阿里巴巴矢量图标
+下载好压缩包解压之后 将文件名后缀为 eot svg ttf woff woff2 还有iconfont.js的文件复制到 assets/font
+在将iconfont.css文件复制到styles里面 
+注意： 要将iconfont里面的文件引入@font-face部分删掉为了防止重复修改路径 已经单独放在styles/fonturl里面了
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

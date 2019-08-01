@@ -30,8 +30,7 @@ export const permissionRouter = [
     component: Layout,
     meta: {
       title: '首页',
-      icon: 'el-icon-platform-eleme',
-      roles: ['spAdmin', 'admin']
+      icon: 'icon-find-fav',
     },
     children: [
       {
@@ -42,27 +41,101 @@ export const permissionRouter = [
     ]
   },
   {
-    path: '/list',
+    path: '/audit',
     component: () => import('../components/Layout/index.vue'),
     meta: {
-      title: '订单列表',
-      icon: 'el-icon-s-goods',
-      roles: ['spAdmin']
+      title: '人工审核',
+      icon: 'icon-shenhe',
     },
     children:[
       {
         path: '',
-        name: 'list',
-        component: () => import('../views/List/index.vue')
+        name: 'audit',
+        component: () => import('../views/Audit/index.vue')
       }
     ]
   },
   {
-    path: '/list/detail',
+    path: '/audit/detail',
     name: 'detail',
     hidden: true,
-    component: () => import('../views/List/detail.vue')
-  }
+    component: () => import('../views/Audit/detail.vue')
+  },
+  {
+    path: '/loan',
+    component: () => import('../components/Layout/index.vue'),
+    meta: {
+      title: '银行放款',
+      icon: 'icon-50',
+    },
+    children:[
+      {
+        path: '',
+        name: 'loan',
+        component: () => import('../views/Loan/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/overdue',
+    component: () => import('../components/Layout/index.vue'),
+    meta: {
+      title: '逾期列表',
+      icon: 'icon-yiyuqi',
+    },
+    children:[
+      {
+        path: '',
+        name: 'overdue',
+        component: () => import('../views/Overdue/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: () => import('../components/Layout/index.vue'),
+    meta: {
+      title: '用户中心',
+      icon: 'icon-dingbudaohang-zhangh',
+    },
+    children:[
+      {
+        path: '',
+        name: 'user',
+        component: () => import('../views/User/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/settleAccounts',
+    component: () => import('../components/Layout/index.vue'),
+    meta: {
+      title: '清账列表',
+      icon: 'icon-pinpaiqushi',
+    },
+    children:[
+      {
+        path: '',
+        name: 'settleAccounts',
+        component: () => import('../views/SettleAccounts/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/setup',
+    component: () => import('../components/Layout/index.vue'),
+    meta: {
+      title: '系统设置',
+      icon: 'icon-xitongshezhi',
+    },
+    children:[
+      {
+        path: '',
+        name: 'setup',
+        component: () => import('../views/Setup/index.vue')
+      }
+    ]
+  },
 ]
 
 export default new Router({

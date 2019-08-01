@@ -7,6 +7,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './styles/global.scss'
 import '@/permission.js'
+import './styles/fonturl.css'
+import './styles/iconfont.css'
 
 if (process.env.NODE_ENV == 'development') {
   require('@/mock')
