@@ -14,7 +14,7 @@
           <div class="nav-bar">
             <router-link v-for="(item, index) in meuns" :key="index" :to="item.path">
               <el-menu-item v-if="item.path !== ''" @click="turnColor(item.path)" :index="item.path">
-                <i :class=" 'iconfont' + ' ' + item.meta.icon"></i>
+                <svg-icon style="font-size:18px;margin-right: 5px;" :icon-class="item.meta.icon"></svg-icon>
                 <span slot="title">{{item.meta.title ? item.meta.title : '' }}</span>
               </el-menu-item>
             </router-link>
@@ -36,7 +36,12 @@
         </el-header>
         <!-- 标签导航 -->
         <div class="tags-nav">
-          <el-tag v-for="tag in tags" @click="turnColor(tag.path)" :key="tag.name" type="info" :style="colorIndex == tag.path ? color : ''">
+          <el-tag v-for="(tag, index) in tags" @click="turnColor(tag.path)" 
+          :key="index" 
+          type="info" 
+          :style="colorIndex == tag.path ? color : ''"
+          :closable="index >= 1"
+           @close="handleClose(tag)">
             <i class="el-icon-location" style="margin-right: 5px;font-size: 15px;"></i>
             {{tag.name}}
           </el-tag>
@@ -107,6 +112,27 @@ export default {
       this.$router.push({
         path: to
       })
+    },
+    handleClose(tag) {
+      this.$confirm('是否要关闭此页面?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        for (let i = 0; i < this.tags.length;i ++) {
+          if (this.tags[i].path == tag.path) {
+            let index = i - 1
+            this.$router.push({
+              path: this.tags[index].path
+            })
+            this.tags.splice(this.tags.indexOf(tag), 1);
+            this.colorIndex = this.tags[index].path
+            sessionStorage.setItem('tagsData', JSON.stringify(this.tags))
+          }
+        }
+      }).catch(() => {
+        return false        
+      })
     }
   },
   mounted() {
@@ -128,6 +154,7 @@ export default {
     }
     // console.log("菜单的展开跟路由有关系，查看elementui--el-menu  的default-active 属性")
   },
+  
 }
 
 </script>

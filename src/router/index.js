@@ -30,7 +30,7 @@ export const permissionRouter = [
     component: Layout,
     meta: {
       title: '首页',
-      icon: 'icon-find-fav',
+      icon: 'shouye',
     },
     children: [
       {
@@ -45,7 +45,7 @@ export const permissionRouter = [
     component: () => import('../components/Layout/index.vue'),
     meta: {
       title: '人工审核',
-      icon: 'icon-shenhe',
+      icon: 'shenhe',
     },
     children:[
       {
@@ -66,7 +66,7 @@ export const permissionRouter = [
     component: () => import('../components/Layout/index.vue'),
     meta: {
       title: '银行放款',
-      icon: 'icon-50',
+      icon: 'shenhe',
     },
     children:[
       {
@@ -81,7 +81,7 @@ export const permissionRouter = [
     component: () => import('../components/Layout/index.vue'),
     meta: {
       title: '逾期列表',
-      icon: 'icon-yiyuqi',
+      icon: 'yuqi',
     },
     children:[
       {
@@ -96,7 +96,7 @@ export const permissionRouter = [
     component: () => import('../components/Layout/index.vue'),
     meta: {
       title: '用户中心',
-      icon: 'icon-dingbudaohang-zhangh',
+      icon: 'shenhe',
     },
     children:[
       {
@@ -111,7 +111,7 @@ export const permissionRouter = [
     component: () => import('../components/Layout/index.vue'),
     meta: {
       title: '清账列表',
-      icon: 'icon-pinpaiqushi',
+      icon: 'shenhe',
     },
     children:[
       {
@@ -126,7 +126,7 @@ export const permissionRouter = [
     component: () => import('../components/Layout/index.vue'),
     meta: {
       title: '系统设置',
-      icon: 'icon-xitongshezhi',
+      icon: 'shenhe',
     },
     children:[
       {
