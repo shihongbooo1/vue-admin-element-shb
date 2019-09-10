@@ -1,7 +1,5 @@
 'use strict'
 const path = require('path')
-const assetsDir = ''
-const Timestamp = new Date().getTime()
 
 function getAssetPath (assetsDir, filePath) {
   return assetsDir
@@ -20,11 +18,6 @@ function getAssetPath (assetsDir, filePath) {
     .options({
       symbolId: 'icon-[name]'
     })
-    const filename = getAssetPath(
-      assetsDir,
-      `js/[name].${Timestamp}.js`
-    )
-    config.mode(process.env.NODE_ENV).output.filename(filename).chunkFilename(filename)
   },
   // 设置跨域代理
   devServer: {
