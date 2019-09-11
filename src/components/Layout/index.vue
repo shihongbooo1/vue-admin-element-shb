@@ -184,7 +184,7 @@ export default {
   height: 100vh;
 }
 .sub_meuns_wapper:not(.el-menu--collapse) {
-    width: 180px;
+    min-width: 180px;
     min-height: 400px;
     height: 100vh;
   }
