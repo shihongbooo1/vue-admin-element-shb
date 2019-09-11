@@ -182,6 +182,7 @@ export default {
 }
 .el-menu--collapse{
   height: 100vh;
+  min-width: 60px;
 }
 .sub_meuns_wapper:not(.el-menu--collapse) {
     min-width: 180px;
