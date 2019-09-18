@@ -7,6 +7,7 @@ function getAssetPath (assetsDir, filePath) {
     : filePath
 }
  module.exports = {
+  publicPath: process.env.VUE_APP_CURRENTMODE === "test" ? '/test' : '/', // 配置不同环境的文件路径地址
   lintOnSave: false,
   productionSourceMap: true,
   chainWebpack: (config) => {
