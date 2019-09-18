@@ -2,7 +2,7 @@
 
 ## 技术栈
 ```
-vue-cli 3.0 核心框架 
+vue-cli 3x 核心框架 
 element-ui 前端UI框架
 axios HTTP协议
 nprogress 第三方进度条
